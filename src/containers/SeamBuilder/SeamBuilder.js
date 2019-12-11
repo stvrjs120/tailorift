@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import Auxiliar from "../../hoc/Auxiliar";
+import SeamRequest from "../../components/SeamRequest/SeamRequest";
 
 class SeamBuilder extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {...};
+  // }
+
+  state = {
+    data: []
+  };
+
   render() {
     return (
       <Auxiliar>
-        <div>Client</div>
-        <div>Seam Request</div>
-        <div>Seam Requests</div>
+        <SeamRequest seams={this.state.data} />
       </Auxiliar>
     );
   }
