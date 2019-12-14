@@ -9,13 +9,30 @@ class SeamBuilder extends Component {
   // }
 
   state = {
-    data: []
+    seams: []
   };
+
+  addSeamHandler = (seam) => {
+    const updatedSeams = {
+      ...this.state.seams,
+      seam
+    };
+
+    this.setState({seams: updatedSeams});
+  }
+
+  editSeamHandler = (seam) => {
+
+  }
+
+  removeSeamHandle = (seam) => {
+
+  }
 
   render() {
     return (
       <Auxiliar>
-        <SeamRequest seams={this.state.data} />
+        <SeamRequest seams={this.state.seams} />
       </Auxiliar>
     );
   }
