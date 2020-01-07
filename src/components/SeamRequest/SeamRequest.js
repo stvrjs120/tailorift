@@ -13,11 +13,7 @@ import {
   OutlinedInput,
   Grid
 } from "@material-ui/core";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
+import SeamClient from "./SeamClient/SeamClient";
 
 const formStyles = makeStyles(theme => ({
   root: {
@@ -54,23 +50,7 @@ const seamRequest = props => {
   return (
     <Grid container className={classes.root} spacing={1}>
       <Grid item xs={12}>
-        <form className={classes.root} noValidate>
-          <TextField id="standard-basic" label="Nombre del cliente" />
-          <TextField id="standard-basic" label="Telefono" />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Fecha de entrega"
-              KeyboardButtonProps={{
-                "aria-label": "change date"
-              }}
-            />
-          </MuiPickersUtilsProvider>
-        </form>
+        <SeamClient ></SeamClient>
         <form noValidate autoComplete="off">
           <TextField
             className={classes.detalle}
