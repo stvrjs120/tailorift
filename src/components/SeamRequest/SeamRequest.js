@@ -2,18 +2,18 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
-  List,
-  ListItem,
-  ListItemText,
   InputLabel,
   FormControl,
   Select,
   MenuItem,
   InputAdornment,
   OutlinedInput,
-  Grid
+  Grid,
+  Fab
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import SeamClient from "./SeamClient/SeamClient";
+import Seam from "./Seams/Seam";
 
 const formStyles = makeStyles(theme => ({
   root: {
@@ -44,13 +44,15 @@ const formStyles = makeStyles(theme => ({
 
 const seamRequest = props => {
   const classes = formStyles();
-  const rows = props.seams;
-  console.log(rows);
+  const seams = props.seams;
+  const client = props.client;
+  // console.log(seams);
+  // console.log(client);
 
   return (
     <Grid container className={classes.root} spacing={1}>
       <Grid item xs={12}>
-        <SeamClient ></SeamClient>
+        <SeamClient clientInfo={client} />
         <form noValidate autoComplete="off">
           <TextField
             className={classes.detalle}
@@ -93,17 +95,11 @@ const seamRequest = props => {
               }
             />
           </FormControl>
+          <Fab color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
         </form>
-        <div className={classes.root}>
-          <List component="nav" aria-label="secondary mailbox folders">
-            <ListItem button>
-              <ListItemText primary="Pedido 1" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Pedido 2" />
-            </ListItem>
-          </List>
-        </div>
+        <Seam seamList={seams} />
       </Grid>
     </Grid>
   );

@@ -9,30 +9,38 @@ class SeamBuilder extends Component {
   // }
 
   state = {
-    seams: []
+    client: {
+      clientName: "Steven Rojas",
+      telephone: "87074821",
+      deliverDate: "14/03/2020"
+    },
+    seams: [
+      {
+        detail: "Vestido de noche",
+        priority: 10,
+        state: 10,
+        cost: 17000
+      }
+    ]
   };
 
-  addSeamHandler = (seam) => {
+  addSeamHandler = seam => {
     const updatedSeams = {
       ...this.state.seams,
       seam
     };
 
-    this.setState({seams: updatedSeams});
-  }
+    this.setState({ seams: updatedSeams });
+  };
 
-  editSeamHandler = (seam) => {
+  editSeamHandler = seam => {};
 
-  }
-
-  removeSeamHandle = (seam) => {
-
-  }
+  removeSeamHandle = seam => {};
 
   render() {
     return (
       <Auxiliar>
-        <SeamRequest seams={this.state.seams} />
+        <SeamRequest client={this.state.client} seams={this.state.seams} />
       </Auxiliar>
     );
   }
