@@ -99,7 +99,9 @@ const seamRequest = props => {
             <AddIcon />
           </Fab>
         </form>
-        <Seam seamList={seams} clientName={client.clientName} />
+        <List component="nav" aria-label="secondary mailbox folders">
+          <Seam seamList={seams} clientName={client.clientName} />
+        </List>
       </Grid>
     </Grid>
   );

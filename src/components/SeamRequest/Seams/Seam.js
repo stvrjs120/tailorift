@@ -15,7 +15,7 @@ const seam = props => {
   const seams = props.seamList;
   const clientName = props.clientName;
   return (
-    <List component="nav" aria-label="secondary mailbox folders">
+    
       {seams.map(seam => {
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
@@ -44,7 +44,6 @@ const seam = props => {
           </ListItemSecondaryAction>
         </ListItem>
       })}
-    </List>
   );
 };
 
