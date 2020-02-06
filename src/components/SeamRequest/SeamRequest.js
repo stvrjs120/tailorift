@@ -46,7 +46,7 @@ const seamRequest = props => {
   const classes = formStyles();
   const seams = props.seams;
   const client = props.client;
-  // console.log(seams);
+  console.log(seams);
   // console.log(client);
 
   return (
@@ -95,11 +95,11 @@ const seamRequest = props => {
               }
             />
           </FormControl>
-          <Fab color="primary" aria-label="add">
+          <Fab onClick={props.seamAdded} color="primary" aria-label="add">
             <AddIcon />
           </Fab>
         </form>
-        <Seam seamList={seams} />
+        <Seam seamList={seams} clientName={client.clientName} />
       </Grid>
     </Grid>
   );

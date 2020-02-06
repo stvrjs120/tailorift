@@ -16,6 +16,7 @@ class SeamBuilder extends Component {
     },
     seams: [
       {
+        id: 1,
         detail: "Vestido de noche",
         priority: 10,
         state: 10,
@@ -40,7 +41,10 @@ class SeamBuilder extends Component {
   render() {
     return (
       <Auxiliar>
-        <SeamRequest client={this.state.client} seams={this.state.seams} />
+        <SeamRequest 
+          client={this.state.client} 
+          seams={this.state.seams}
+          seamAdded={this.addSeamHandler} />
       </Auxiliar>
     );
   }
