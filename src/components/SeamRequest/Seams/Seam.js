@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  List,
   ListItem,
   ListItemText,
   ListItemAvatar,
@@ -14,10 +13,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const seam = props => {
   const seams = props.seamList;
   const clientName = props.clientName;
+
   return (
-    
-      {seams.map(seam => {
-        <ListItem alignItems="flex-start">
+    <div>
+      {seams.map((seam, index) => (
+        <ListItem key={"newSeam" + index} alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
           </ListItemAvatar>
@@ -28,10 +28,9 @@ const seam = props => {
                 <Typography
                   component="span"
                   variant="body2"
-                  // className={classes.inline}
                   color="textPrimary"
                 >
-                  {props.clientName}
+                  {clientName}
                 </Typography>
                 {" — Nuevo"}
               </React.Fragment>
@@ -43,7 +42,8 @@ const seam = props => {
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
-      })}
+      ))}
+    </div>
   );
 };
 

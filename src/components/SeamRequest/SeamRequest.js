@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  List,
   TextField,
   InputLabel,
   FormControl,
@@ -46,6 +47,12 @@ const seamRequest = props => {
   const classes = formStyles();
   const seams = props.seams;
   const client = props.client;
+  let newSeam = {
+    detail: "",
+    priority: "",
+    status: 10,
+    cost: 0
+  };
   console.log(seams);
   // console.log(client);
 
@@ -55,6 +62,7 @@ const seamRequest = props => {
         <SeamClient clientInfo={client} />
         <form noValidate autoComplete="off">
           <TextField
+            value={newSeam.detail}
             className={classes.detalle}
             id="outlined-detalle"
             label="Detalle de la costura"
@@ -64,6 +72,7 @@ const seamRequest = props => {
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="outlined-label-priority">Prioridad</InputLabel>
             <Select
+              value={newSeam.priority}
               labelId="outlined-label-priority"
               id="outlined-select-priority"
             >
@@ -77,7 +86,11 @@ const seamRequest = props => {
           </FormControl>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="outlined-label-estado">Estado</InputLabel>
-            <Select labelId="outlined-label-estado" id="select-outlined-estado">
+            <Select
+              value={newSeam.status}
+              labelId="outlined-label-estado"
+              id="select-outlined-estado"
+            >
               <MenuItem value={10}>Nuevo</MenuItem>
               <MenuItem value={20}>En proceso</MenuItem>
               <MenuItem value={30}>En espera</MenuItem>
@@ -89,13 +102,18 @@ const seamRequest = props => {
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel htmlFor="outlined-adornment-amount">Costo</InputLabel>
             <OutlinedInput
+              value={newSeam.cost}
               id="outlined-adornment-amount"
               startAdornment={
                 <InputAdornment position="start">₡</InputAdornment>
               }
             />
           </FormControl>
-          <Fab onClick={props.seamAdded} color="primary" aria-label="add">
+          <Fab
+            onClick={() => props.seamAdded(newSeam)}
+            color="primary"
+            aria-label="add"
+          >
             <AddIcon />
           </Fab>
         </form>
