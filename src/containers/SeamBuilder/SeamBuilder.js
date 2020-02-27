@@ -8,6 +8,8 @@ class SeamBuilder extends Component {
   //   this.state = {...};
   // }
 
+  counter = 2;
+
   state = {
     client: {
       clientName: "Steven Rojas",
@@ -32,18 +34,30 @@ class SeamBuilder extends Component {
     ]
   };
 
-  addSeamHandler = seam => {
-    const updatedSeams = {
+  addSeamHandler = () => {
+    this.counter++;
+
+    const updatedSeams = [
       ...this.state.seams,
-      seam
-    };
+      {
+        id: this.counter,
+        detail: "Vestido de nuevo",
+        priority: 4,
+        state: 6,
+        cost: 17000
+      }
+    ];
 
     this.setState({ seams: updatedSeams });
   };
 
   editSeamHandler = seam => {};
 
-  removeSeamHandle = seam => {};
+  removeSeamHandle = (id) => {
+    const updatedSeams = this.state.seams.filter(x => x.id !== id);
+
+    this.setState({ seams: updatedSeams });
+  };
 
   render() {
     return (
@@ -52,6 +66,7 @@ class SeamBuilder extends Component {
           client={this.state.client}
           seams={this.state.seams}
           seamAdded={this.addSeamHandler}
+          seamRemoved={this.removeSeamHandle}
         />
       </Auxiliar>
     );

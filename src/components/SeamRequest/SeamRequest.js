@@ -110,7 +110,7 @@ const seamRequest = props => {
             />
           </FormControl>
           <Fab
-            onClick={() => props.seamAdded(newSeam)}
+            onClick={() => props.seamAdded()}
             color="primary"
             aria-label="add"
           >
@@ -118,7 +118,7 @@ const seamRequest = props => {
           </Fab>
         </form>
         <List component="nav" aria-label="secondary mailbox folders">
-          <Seam seamList={seams} clientName={client.clientName} />
+          <Seam seamList={seams} clientName={client.clientName} removeSeam={props.seamRemoved} />
         </List>
       </Grid>
     </Grid>

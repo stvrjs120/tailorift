@@ -16,8 +16,8 @@ const seam = props => {
 
   return (
     <div>
-      {seams.map((seam, index) => (
-        <ListItem key={"newSeam" + index} alignItems="flex-start">
+      {seams.map((seam) => (
+        <ListItem key={seam.id} alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
           </ListItemAvatar>
@@ -37,7 +37,7 @@ const seam = props => {
             }
           />
           <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="delete">
+            <IconButton onClick={() => props.removeSeam(seam.id)} edge="end" aria-label="delete">
               <DeleteIcon />
             </IconButton>
           </ListItemSecondaryAction>
