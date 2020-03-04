@@ -31,8 +31,13 @@ class SeamBuilder extends Component {
         state: 6,
         cost: 17000
       }
-    ]
+    ],
+    checkable: false
   };
+
+  updateCheckable = (seams) => {
+    this.setState({checkable: seams.length > 0});
+  }
 
   addSeamHandler = () => {
     this.counter++;
@@ -49,6 +54,7 @@ class SeamBuilder extends Component {
     ];
 
     this.setState({ seams: updatedSeams });
+    this.updateCheckable(updatedSeams);
   };
 
   editSeamHandler = seam => {};
@@ -57,6 +63,7 @@ class SeamBuilder extends Component {
     const updatedSeams = this.state.seams.filter(x => x.id !== id);
 
     this.setState({ seams: updatedSeams });
+    this.updateCheckable(updatedSeams);
   };
 
   render() {
@@ -67,6 +74,7 @@ class SeamBuilder extends Component {
           seams={this.state.seams}
           seamAdded={this.addSeamHandler}
           seamRemoved={this.removeSeamHandle}
+          checkable={this.state.checkable}
         />
       </Auxiliar>
     );

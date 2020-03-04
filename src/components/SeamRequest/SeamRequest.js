@@ -13,6 +13,7 @@ import {
   Fab
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import CheckIcon from '@material-ui/icons/Check';
 import SeamClient from "./SeamClient/SeamClient";
 import Seam from "./Seams/Seam";
 
@@ -115,6 +116,13 @@ const seamRequest = props => {
             aria-label="add"
           >
             <AddIcon />
+          </Fab>
+          <Fab
+            color="secondary"
+            aria-label="check"
+            disabled={!props.checkable}
+          >
+            <CheckIcon />
           </Fab>
         </form>
         <List component="nav" aria-label="secondary mailbox folders">
