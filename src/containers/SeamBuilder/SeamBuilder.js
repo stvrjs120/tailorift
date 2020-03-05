@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Auxiliar from "../../hoc/Auxiliar";
 import SeamRequest from "../../components/SeamRequest/SeamRequest";
+import Modal from '../../components/UI/Modal/Modal';
+import SeamSummary from "../../components/SeamRequest/SeamSummary/SeamSummary";
 
 class SeamBuilder extends Component {
   // constructor(props) {
@@ -69,6 +71,7 @@ class SeamBuilder extends Component {
   render() {
     return (
       <Auxiliar>
+        
         <SeamRequest
           client={this.state.client}
           seams={this.state.seams}
@@ -76,6 +79,12 @@ class SeamBuilder extends Component {
           seamRemoved={this.removeSeamHandle}
           checkable={this.state.checkable}
         />
+        <Modal>
+          <SeamSummary 
+            clientName={this.state.clientName} 
+            seams={this.state.seams}
+          />
+        </Modal>
       </Auxiliar>
     );
   }

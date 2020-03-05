@@ -24,7 +24,7 @@ const formStyles = makeStyles(theme => ({
 const seamClient = props => {
   const classes = formStyles();
   const { clientInfo } = props;
-  console.log(props);
+  // console.log(props);
 
   return (
     <form className={classes.root} noValidate>

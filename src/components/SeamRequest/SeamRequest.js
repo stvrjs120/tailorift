@@ -54,7 +54,7 @@ const seamRequest = props => {
     status: 10,
     cost: 0
   };
-  console.log(seams);
+  // console.log(seams);
   // console.log(client);
 
   return (
