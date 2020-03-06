@@ -77,6 +77,10 @@ class SeamBuilder extends Component {
     this.setState({checking: false});
   };
 
+  checkContinueHandler = () => {
+    alert('Conturas ingresadas!');
+  };
+
   render() {
     return (
       <Auxiliar>
@@ -93,6 +97,8 @@ class SeamBuilder extends Component {
           show={this.state.checking}
           modalClosed={this.checkCancelHandler}>
           <SeamSummary 
+            checkCancelled={this.checkCancelHandler}
+            checkContinued={this.checkContinueHandler}
             clientName={this.state.clientName} 
             seams={this.state.seams}
           />
