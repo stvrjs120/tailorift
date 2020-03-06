@@ -34,7 +34,8 @@ class SeamBuilder extends Component {
         cost: 17000
       }
     ],
-    checkable: false
+    checkable: false,
+    checking: false
   };
 
   updateCheckable = (seams) => {
@@ -68,6 +69,14 @@ class SeamBuilder extends Component {
     this.updateCheckable(updatedSeams);
   };
 
+  checkHandler = () => {
+    this.setState({checking: true});
+  };
+
+  checkCancelHandler = () => {
+    this.setState({checking: false});
+  };
+
   render() {
     return (
       <Auxiliar>
@@ -78,8 +87,11 @@ class SeamBuilder extends Component {
           seamAdded={this.addSeamHandler}
           seamRemoved={this.removeSeamHandle}
           checkable={this.state.checkable}
+          check={this.checkHandler}
         />
-        <Modal>
+        <Modal 
+          show={this.state.checking}
+          modalClosed={this.checkCancelHandler}>
           <SeamSummary 
             clientName={this.state.clientName} 
             seams={this.state.seams}

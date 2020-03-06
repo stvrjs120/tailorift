@@ -118,6 +118,7 @@ const seamRequest = props => {
             <AddIcon />
           </Fab>
           <Fab
+            onClick={props.check}
             color="secondary"
             aria-label="check"
             disabled={!props.checkable}

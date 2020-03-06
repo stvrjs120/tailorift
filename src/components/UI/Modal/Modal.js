@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Auxiliar from '../../../hoc/Auxiliar';
+import Backdrop from '../Backdrop/Backdrop';
 
 const modalStyles = makeStyles(theme => ({
     modal: {
@@ -18,7 +20,7 @@ const modalStyles = makeStyles(theme => ({
         left: `15%`,
         top: `30%`,
         boxSizing: `border-box`,
-        transition: `all 0.3 ease-out`
+        transition: 'all 0.3s ease-out'
     }
   }));
 
@@ -26,9 +28,17 @@ const modal = props => {
     const classes = modalStyles();
 
     return(
-        <div className={classes.modal}>
-            {props.children}
-        </div>
+        <Auxiliar>
+            <Backdrop show={props.show} uncheck={props.modalClosed}/>
+            <div 
+                className={classes.modal}
+                style={{
+                    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                    opacity: props.show ? '1' : '0'
+                }}>
+                {props.children}
+            </div>
+        </Auxiliar>
     );
 };
 
