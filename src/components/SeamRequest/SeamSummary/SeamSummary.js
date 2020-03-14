@@ -1,9 +1,9 @@
-import React from 'react';
-import Aux from '../../../hoc/Auxiliar';
+import React, { Component } from 'react';
+import Aux from '../../../hoc/Aux/Auxiliar';
 import Button from '../../UI/Button/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-const seamSummaryStyles = makeStyles(theme => ({
+const seamSummaryStyles = theme => ({
     controls: {
         '& > *': {
           margin: theme.spacing(1),
@@ -11,38 +11,44 @@ const seamSummaryStyles = makeStyles(theme => ({
 
         textAlign: 'right'
       }
-  }));
+  });
 
-const seamSummary = props => {
-    const classes = seamSummaryStyles();
+class SeamSummary extends Component {
+    componentWillUpdate() {
+        console.log('[OrderSummary] WillUpdate')
+    }
 
-    const seamsSummary = props.seams
-        .map((seam, index) => {
-            return <li key={index}>{index} - {seam.detail}</li>
-        });
-    
-    return (
-        <Aux>
-            <h3>Resumen de Costura</h3>
-            <p>{props.clientName}</p>
-            <ul>
-                {seamsSummary}
-            </ul>
-            <div className={classes.controls}>
-                <Button
-                    event={props.checkCancelled} 
-                    variant="outlined">
-                    Cancelar
-                </Button>
-                <Button 
-                    event={props.checkContinued}
-                    variant="contained" 
-                    color="primary">
-                    Crear
-                </Button>
-            </div>
-        </Aux>
-    );
-};
+    render() {
+        const { classes } = this.props;
 
-export default seamSummary;
+        const seamsSummary = this.props.seams
+            .map((seam, index) => {
+                return <li key={index}>{index} - {seam.detail}</li>
+            });
+            
+        return (
+            <Aux>
+                <h3>Resumen de Costura</h3>
+                <p>{this.props.clientName}</p>
+                <ul>
+                    {seamsSummary}
+                </ul>
+                <div className={classes.controls}>
+                    <Button
+                        event={this.props.checkCancelled} 
+                        variant="outlined">
+                        Cancelar
+                    </Button>
+                    <Button 
+                        event={this.props.checkContinued}
+                        variant="contained" 
+                        color="primary">
+                        Crear
+                    </Button>
+                </div>
+            </Aux>
+        );
+    }
+}
+
+export default withStyles(seamSummaryStyles)(SeamSummary);

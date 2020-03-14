@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Auxiliar from "../../hoc/Auxiliar";
+import Auxiliar from "../../hoc/Aux/Auxiliar";
 import SeamRequest from "../../components/SeamRequest/SeamRequest";
 import Modal from '../../components/UI/Modal/Modal';
 import SeamSummary from "../../components/SeamRequest/SeamSummary/SeamSummary";

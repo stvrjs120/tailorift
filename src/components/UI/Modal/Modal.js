@@ -1,9 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Auxiliar from '../../../hoc/Auxiliar';
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Auxiliar from '../../../hoc/Aux/Auxiliar';
 import Backdrop from '../Backdrop/Backdrop';
 
-const modalStyles = makeStyles(theme => ({
+const modalStyles = theme => ({
     modal: {
         [theme.breakpoints.up('sm')]: {
             width: 500,
@@ -22,24 +22,35 @@ const modalStyles = makeStyles(theme => ({
         boxSizing: `border-box`,
         transition: 'all 0.3s ease-out'
     }
-  }));
+  });
 
-const modal = props => {
-    const classes = modalStyles();
+class Modal extends Component {
 
-    return(
-        <Auxiliar>
-            <Backdrop show={props.show} uncheck={props.modalClosed}/>
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.show !== this.props.show;
+    }
+
+    componentWillUpdate() {
+        console.log('[Modal] WillUpdate');
+    }
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <Auxiliar>
+            <Backdrop show={this.props.show} uncheck={this.props.modalClosed}/>
             <div 
                 className={classes.modal}
                 style={{
-                    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
+                    transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                    opacity: this.props.show ? '1' : '0'
                 }}>
-                {props.children}
+                {this.props.children}
             </div>
         </Auxiliar>
-    );
-};
+        );
+    }
+}
 
-export default modal;
+export default withStyles(modalStyles)(Modal);
