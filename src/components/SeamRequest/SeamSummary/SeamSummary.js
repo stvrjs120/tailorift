@@ -29,7 +29,7 @@ class SeamSummary extends Component {
         return (
             <Aux>
                 <h3>Resumen de Costura</h3>
-                <p>{this.props.clientName}</p>
+                <p>{this.props.customerName}</p>
                 <ul>
                     {seamsSummary}
                 </ul>

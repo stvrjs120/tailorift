@@ -3,6 +3,16 @@ import Auxiliar from "../../hoc/Aux/Auxiliar";
 import SeamRequest from "../../components/SeamRequest/SeamRequest";
 import Modal from '../../components/UI/Modal/Modal';
 import SeamSummary from "../../components/SeamRequest/SeamSummary/SeamSummary";
+import { CircularProgress, withStyles } from '@material-ui/core';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-seams';
+
+const userStyles = theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+});
 
 class SeamBuilder extends Component {
   // constructor(props) {
@@ -13,8 +23,8 @@ class SeamBuilder extends Component {
   counter = 2;
 
   state = {
-    client: {
-      clientName: "Steven Rojas",
+    customer: {
+      customerName: "Steven Rojas",
       telephone: "87074821",
       deliverDate: "14/03/2020"
     },
@@ -35,7 +45,8 @@ class SeamBuilder extends Component {
       }
     ],
     checkable: false,
-    checking: false
+    checking: false,
+    loading: false
   };
 
   updateCheckable = (seams) => {
@@ -78,16 +89,42 @@ class SeamBuilder extends Component {
   };
 
   checkContinueHandler = () => {
-    alert('Conturas ingresadas!');
+    this.setState({loading: true});
+
+    const seams = {
+      seams: this.state.seams,
+      customer: this.state.customer
+    }
+    axios.post('/seams.json', seams)
+      .then(response => {
+        this.setState({loading: false, checking: false});
+      })
+      .catch(error => {
+        this.setState({loading: false, checking: false});
+      });
   };
 
   render() {
+    const { classes } = this.props;
+
+    let seamSummary = <SeamSummary 
+      checkCancelled={this.checkCancelHandler}
+      checkContinued={this.checkContinueHandler}
+      customerName={this.state.customerName} 
+      seams={this.state.seams} />
+
+    if (this.state.loading) {
+      seamSummary = <div className={classes.root}>
+        <CircularProgress />
+      </div>
+    }
+
     return (
       <Auxiliar>
         
         <SeamRequest
-          client={this.state.client}
-          seams={this.state.seams}
+          customer={this.state.customer}
+          seams={this.state.seams}ß
           seamAdded={this.addSeamHandler}
           seamRemoved={this.removeSeamHandle}
           checkable={this.state.checkable}
@@ -96,16 +133,11 @@ class SeamBuilder extends Component {
         <Modal 
           show={this.state.checking}
           modalClosed={this.checkCancelHandler}>
-          <SeamSummary 
-            checkCancelled={this.checkCancelHandler}
-            checkContinued={this.checkContinueHandler}
-            clientName={this.state.clientName} 
-            seams={this.state.seams}
-          />
+          {seamSummary}
         </Modal>
       </Auxiliar>
     );
   }
 }
 
-export default SeamBuilder;
+export default withStyles(userStyles)(withErrorHandler(SeamBuilder, axios));

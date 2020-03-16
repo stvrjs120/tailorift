@@ -12,7 +12,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const seam = props => {
   const seams = props.seamList;
-  const clientName = props.clientName;
+  const customerName = props.customerName;
 
   return (
     <div>
@@ -30,7 +30,7 @@ const seam = props => {
                   variant="body2"
                   color="textPrimary"
                 >
-                  {clientName}
+                  {customerName}
                 </Typography>
                 {" — Nuevo"}
               </React.Fragment>

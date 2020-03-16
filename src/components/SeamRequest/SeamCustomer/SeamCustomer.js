@@ -21,9 +21,9 @@ const formStyles = makeStyles(theme => ({
   }
 }));
 
-const seamClient = props => {
+const seamCustomer = props => {
   const classes = formStyles();
-  const { clientInfo } = props;
+  const { customerInfo } = props;
   // console.log(props);
 
   return (
@@ -31,12 +31,12 @@ const seamClient = props => {
       <TextField
         id="standard-basic"
         label="Nombre del cliente"
-        value={clientInfo.clientName}
+        value={customerInfo.customerName}
       />
       <TextField
         id="standard-basic"
         label="Telefono"
-        value={clientInfo.telephone}
+        value={customerInfo.telephone}
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -55,4 +55,4 @@ const seamClient = props => {
   );
 };
 
-export default seamClient;
+export default seamCustomer;
