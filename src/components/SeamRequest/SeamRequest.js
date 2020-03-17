@@ -15,6 +15,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import CheckIcon from '@material-ui/icons/Check';
 import Seam from "./Seams/Seam";
+import axios from "../../axios-seams";
 
 const formStyles = theme => ({
   root: {
@@ -54,6 +55,7 @@ class SeamRequest extends Component {
   //   cost: 0
   // };
   state = {
+    priorities: null,
     newSeam: {
       detail: "",
       priority: "",
@@ -62,8 +64,23 @@ class SeamRequest extends Component {
     }
   };
 
+  componentDidMount() {
+    axios.get('https://react2seams.firebaseio.com/priorities.json')
+      .then(response => {
+        this.setState({priorities: response.data});
+      })
+  }
+
   render() {
     const { classes } = this.props;
+    const priorities = this.state.priorities;
+
+    let jsxPriorities = Object.keys(priorities)
+      .map(igKey => {
+        return [...Array( priorities[igKey] )].map( ( _, i) => {
+          return <MenuItem key={igKey+i} value={10}>Baja</MenuItem>
+        })
+      });
 
     return (
       <Grid container className={classes.root} spacing={1}>
