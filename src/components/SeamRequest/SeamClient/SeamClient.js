@@ -4,27 +4,26 @@ import { TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker
+  KeyboardDatePicker,
 } from "@material-ui/pickers";
 
-const formStyles = makeStyles(theme => ({
+const formStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
-        width: `100%`
+        width: `100%`,
       },
       [theme.breakpoints.up("md")]: {
-        width: 245
-      }
-    }
-  }
+        width: 245,
+      },
+    },
+  },
 }));
 
-const seamClient = props => {
+const seamClient = (props) => {
   const classes = formStyles();
   const { clientInfo } = props;
-  // console.log(props);
 
   return (
     <form className={classes.root} noValidate>
@@ -47,7 +46,7 @@ const seamClient = props => {
           id="date-picker-inline"
           label="Fecha de entrega"
           KeyboardButtonProps={{
-            "aria-label": "change date"
+            "aria-label": "change date",
           }}
         />
       </MuiPickersUtilsProvider>

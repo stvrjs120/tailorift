@@ -10,52 +10,50 @@ import {
   InputAdornment,
   OutlinedInput,
   Grid,
-  Fab
+  Fab,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import CheckIcon from '@material-ui/icons/Check';
+import CheckIcon from "@material-ui/icons/Check";
 import SeamClient from "./SeamClient/SeamClient";
-import Seam from "./Seams/Seam";
+import Seams from "./Seams/Seams";
 
-const formStyles = makeStyles(theme => ({
+const formStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
-        width: `100%`
+        width: `100%`,
       },
       [theme.breakpoints.up("md")]: {
-        width: 245
-      }
-    }
+        width: 245,
+      },
+    },
   },
   detalle: {
     margin: theme.spacing(1),
-    width: `98%`
+    width: `98%`,
   },
   formControl: {
     margin: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      width: `100%`
+      width: `100%`,
     },
     [theme.breakpoints.up("md")]: {
-      width: 245
-    }
-  }
+      width: 245,
+    },
+  },
 }));
 
-const seamRequest = props => {
+const seamRequest = (props) => {
   const classes = formStyles();
-  const seams = props.seams;
+  const mySeams = props.seams;
   const client = props.client;
   let newSeam = {
     detail: "",
     priority: "",
     status: 10,
-    cost: 0
+    cost: 0,
   };
-  // console.log(seams);
-  // console.log(client);
 
   return (
     <Grid container className={classes.root} spacing={1}>
@@ -127,7 +125,11 @@ const seamRequest = props => {
           </Fab>
         </form>
         <List component="nav" aria-label="secondary mailbox folders">
-          <Seam seamList={seams} clientName={client.clientName} removeSeam={props.seamRemoved} />
+          <Seams
+            seamList={mySeams}
+            clientName={client.clientName}
+            removeSeam={props.seamRemoved}
+          />
         </List>
       </Grid>
     </Grid>

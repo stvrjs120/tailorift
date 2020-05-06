@@ -6,17 +6,17 @@ import {
   Avatar,
   Typography,
   ListItemSecondaryAction,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const seam = props => {
-  const seams = props.seamList;
+const seams = (props) => {
+  const seamsList = props.seamList;
   const clientName = props.clientName;
 
   return (
     <div>
-      {seams.map((seam) => (
+      {seamsList.map((seam) => (
         <ListItem key={seam.id} alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
@@ -37,7 +37,11 @@ const seam = props => {
             }
           />
           <ListItemSecondaryAction>
-            <IconButton onClick={() => props.removeSeam(seam.id)} edge="end" aria-label="delete">
+            <IconButton
+              onClick={() => props.removeSeam(seam.id)}
+              edge="end"
+              aria-label="delete"
+            >
               <DeleteIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -47,4 +51,4 @@ const seam = props => {
   );
 };
 
-export default seam;
+export default seams;
